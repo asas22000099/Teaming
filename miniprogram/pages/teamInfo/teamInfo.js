@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    //获取所有与自己相关的队伍存到data，待实现
   },
 
   /**
@@ -26,25 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(typeof this.getTabBar === 'function' && this.getTabBar()){
-      this.getTabBar().setData({
-        selected:1
-      })
-    }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    
   },
 
   /**
@@ -58,13 +40,18 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    //判断是否还有未显示的队伍，动态改变底部内容
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+  edit: function(){
+    //弹窗显示队伍信息以及修改
+  },
 
+  commit: function(){
+    //提交修改后的信息
+  },
+
+  filter: function(){
+    //根据条件更改显示的队伍
   }
 })

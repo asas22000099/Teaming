@@ -66,5 +66,30 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  goToAbout: function(){
+    wx.navigateTo({
+      url: '../about/about'
+    })
+  },
+
+  goToSettings: function(){
+    wx.navigateTo({
+      url: '../settings/settings'
+    })
+  },
+
+  goToChat: function(){
+    wx.navigateTo({
+      url: '../chat/chat'
+    })
+  },
+
+  goToTeamInfo: function(){
+    console.log(1);
+    wx.navigateTo({
+      url: '../teamInfo/teamInfo'
+    })
   }
 })

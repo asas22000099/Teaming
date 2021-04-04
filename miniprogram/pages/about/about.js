@@ -1,4 +1,4 @@
-// pages/custom-tab-bar/index.js
+// miniprogram/pages/about/about.js
 Page({
 
   /**

@@ -1,25 +1,11 @@
-// miniprogram/pages/custom-tab-bar/index.js
+// miniprogram/pages/settings/settings.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    selected:0,
-    tabList:[
-      {
-        "pagePath": "pages/index/index",
-        "text": "广场"
-      },
-      {
-        "pagePath": "pages/newTeam/newTeam",
-        "text": "发布"
-      },
-      {
-        "pagePath": "pages/center/center",
-        "text": "我的"
-      }
-    ]
+
   },
 
   /**
@@ -76,19 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  switchTab: function (e) {
-    let k = Number(e.currentTarget.dataset.index);
-    let tab = this.data.tabList;
-    let selected = this.data.selected;
-    if(selected !== k){
-      this.setData({
-        selected: k
-      });
-      wx.switchTab({
-        url: `/${tab[k].pagePath}`,
-      })
-    }
   }
 })
