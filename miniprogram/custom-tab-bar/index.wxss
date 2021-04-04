@@ -1,0 +1,12 @@
+/* miniprogram/pages/custom-tab-bar/index.wxss */
+@import "../colorui/icon.wxss";
+@import "../colorui/main.wxss";
+.tabbar{
+  background: #fff;
+}
+.active{
+  color: chartreuse;
+}
+.default{
+  color: black;
+}

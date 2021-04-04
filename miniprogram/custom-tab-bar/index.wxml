@@ -1,0 +1,16 @@
+<!--miniprogram/pages/custom-tab-bar/index.wxml-->
+<view class="cu-bar tabbar bg-white foot">
+    <view class="action {{selected === 0 ? 'active' : 'default'}}" data-index="0" bindtap="switchTab">
+      <view class="cuIcon-homefill"></view> 首页
+    </view>
+    <view class="action add-action {{selected === 1 ? 'active' : 'default'}}" data-index="1" bindtap="switchTab">
+      <button class="cu-btn cuIcon-add bg-green shadow"></button>
+      发布
+    </view>
+    <view class="action {{selected === 2 ? 'active' : 'default'}}" data-index="2" bindtap="switchTab">
+      <view class="cuIcon-my">
+        <view class="cu-tag badge"></view>
+      </view>
+      我的
+    </view>
+  </view>

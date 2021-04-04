@@ -1,1 +1,7 @@
 /* miniprogram/pages/center/center.wxss */
+.user-info{
+  width: 100%;
+}
+.menu-list{
+  width: 100%;
+}

@@ -24,6 +24,23 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "广场"
+      },
+      {
+        "pagePath": "pages/teamInfo/teamInfo",
+        "text": "发布"
+      },
+      {
+        "pagePath": "pages/center/center",
+        "text": "我的"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
