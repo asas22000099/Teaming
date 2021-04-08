@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    info:[{"id":1,"name":2,"content":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"},{"id":3,"name":4,"content":"bbbbb"}]
   },
 
   /**
@@ -13,6 +13,7 @@ Page({
    */
   onLoad: function (options) {
     //获取所有与自己相关的队伍存到data，待实现
+    
   },
 
   /**
@@ -43,12 +44,10 @@ Page({
     //判断是否还有未显示的队伍，动态改变底部内容
   },
 
-  edit: function(){
-    //弹窗显示队伍信息以及修改
-  },
-
-  commit: function(){
-    //提交修改后的信息
+  edit: function(e){
+    wx.navigateTo({
+      url: '../editPage/editPage?id=' + e.currentTarget.id,
+    })
   },
 
   filter: function(){

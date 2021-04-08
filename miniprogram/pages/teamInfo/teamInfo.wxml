@@ -1,2 +1,10 @@
 <!--miniprogram/pages/teamInfo/teamInfo.wxml-->
-<text>miniprogram/pages/teamInfo/teamInfo.wxml</text>
+<view class="cu-list menu-avatar">
+  <view class="cu-item" wx:for="{{info}}" data-item="item">
+    <view class="content" style="left:40rpx">
+      <view class="text-grey">{{item.name}}</view>
+      <view class="text-gray text-cut">{{item.content}}</view>
+    </view>
+    <view class="action" id="{{item.id}}" bindtap="edit">编辑</view>
+  </view>
+</view>

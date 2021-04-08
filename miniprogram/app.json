@@ -18,7 +18,8 @@
     "pages/chat/chat",
     "pages/about/about",
     "pages/settings/settings",
-    "pages/newTeam/newTeam"
+    "pages/newTeam/newTeam",
+    "pages/editPage/editPage"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
