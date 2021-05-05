@@ -12,15 +12,13 @@ Page({
     date:null,
     curDate:null,
     userid:null,
-    teamid:null,
     title:null,
     member:-1,
     content:'',
     address:'',
-    ddl:null,
     monthDay:[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
     picker:['a', 'b'],
-    index:null
+    index:-1
   },
 
   /**
@@ -61,12 +59,22 @@ Page({
   },
 
   switchAddress: function(e){
+    if(e.detail.value === false){
+      this.setData({
+        address:""
+      })
+    }
     this.setData({
       needAddress: e.detail.value
     })
   },
 
   switchAmount: function(e){
+    if(e.detail.value === false){
+      this.setData({
+        member:-1
+      })
+    }
     this.setData({
       amountLimit: e.detail.value
     })
@@ -97,7 +105,8 @@ Page({
   },
 
   commit:function(e){
-    var regNum = new RegExp('(^[1-9][0-9]*[0-9]$)|^0$','g')
+    var regNum = new RegExp('(^[1-9][0-9]*$)|^0$','g')
+    var that = this
     if(this.data.title === null){
       wx.showToast({
         title: '请输入队伍名称',
@@ -109,19 +118,72 @@ Page({
         icon: 'error'
       })
     }else if(this.data.amountLimit && regNum.exec(this.data.member) === null){
+      console.log(this.data.member)
+      console.log(regNum.exec(this.data.member) )
       wx.showToast({
         title: '请输入有效数字',
         icon: 'error'
       })
-    }else if(this.data.index === null){
+    }else if(this.data.index === -1){
       wx.showToast({
         title: '请选择队伍分类',
         icon: 'error'
       })
     }else{
-      wx.showToast({
-        title: '提交成功！',
+      var that = this
+      const db = wx.cloud.database()
+      const team = db.collection("Team")
+      var now = new Date()
+      team.add({
+        data:{
+          address:that.data.address,
+          max:that.data.member,
+          label_id:that.data.picker[that.data.index],
+          create_time:now,
+          deadline:that.data.dateLimit ? new Date(that.data.date) : now,
+          information:that.data.content,
+          team_name:that.data.title,
+          status:1
+        },
+        success:function(res){
+          console.log(res)
+          wx.cloud.callFunction({
+            name:'login',
+            data:{
+              message:'helloCloud',
+            }
+          }).then(res2=>{
+            db.collection("Member").add({
+              data:{
+                team_id:res["_id"],
+                isLeader:true,
+                member_id: res2.result
+              },
+              success:function(res2){
+                wx.showToast({
+                  title: '提交成功！',
+                })
+              },
+              fail:function(res2){
+                team.doc(res["_id"]).remove()
+                wx.showToast({
+                  title: '提交失败！',
+                  icon:"loading"
+                })
+              }
+            })
+          })
+
+          
+        },
+        fail:function(res){
+          wx.showToast({
+            title: '提交失败！',
+            icon:"loading"
+          })
+        }
       })
+      
     }
   }
 })

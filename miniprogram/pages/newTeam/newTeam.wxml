@@ -37,7 +37,7 @@
 		<view class="title">队伍类别</view>
 		<picker bindchange="pickerChange" value="{{index}}" range="{{picker}}">
 			<view class="picker">
-				{{index?picker[index]:'选择队伍类别'}}
+				{{index !== -1 ?picker[index]:'选择队伍类别'}}
 			</view>
 		</picker>
 	</view>
