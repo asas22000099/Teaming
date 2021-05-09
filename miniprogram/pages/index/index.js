@@ -1,132 +1,77 @@
-//index.js
+//index.
+import{request} from "../../request/index.js"
 const app = getApp()
+
 
 Page({
   data: {
-    avatarUrl: './user-unlogin.png',
-    userInfo: {},
-    hasUserInfo: false,
-    logged: false,
-    takeSession: false,
-    requestResult: '',
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') // 如需尝试获取用户信息可改为false
+    // 队伍信息
+    teaminfo:[],
+    // 用户的地理位置
+    // userglobe:"",
   },
-
+  //加载时发生：判断本地存储，获取队伍信息
   onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
-    if (wx.getUserProfile) {
+    // console.log("ddddddddddd");
+    this.getteaminfo();
+
+   
+  },
+  // 获取队伍信息的函数
+  getteaminfo()
+  {
+    const db = wx.cloud.database()
+    const teams = db.collection('Team');
+    var team_ids=[];
+    teams.get().then(res=>{
+      // console.log(res.data[0].deadline);
+      // console.log(res.data[0].deadline.toLocaleDateString());
+      for(var a=0;a<res.data.length;a++)
+      {
+        res.data[a].deadline=res.data[a].deadline.toLocaleDateString();
+        team_ids.push(res.data[a]._id);
+      }
+
+      // this.setData({team_ids:team_ids});
+      // console.log(team_ids);
       this.setData({
-        canIUseGetUserProfile: true,
-      })
-    }
-  },
-
-  onShow: function(){
-    if(typeof this.getTabBar === 'function' && this.getTabBar()){
-      this.getTabBar().setData({
-        selected:0
-      })
-    }
-  },
-
-  getUserProfile() {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData({
-          avatarUrl: res.userInfo.avatarUrl,
-          userInfo: res.userInfo,
-          hasUserInfo: true,
+          teaminfo:res.data,
         })
-      }
     })
+    console.log(team_ids);
+    // .catch(err=>{
+    //   console.log(err);
+    // })
+  //   //获取队伍member
+  //   const members = db.collection('Member');
+  //   console.log(team_ids);
+  //   for(var a=0;a<team_ids.length;a++){
+  //    console.log(team_ids[a]);
+  //    var membernumber=0;
+  //    members.where({
+  //      team_id:team_ids[a]
+  //    }).get({
+  //      success:function(res){
+  //        console.log(res.data);
+  //      }
+  //    }
+  //    )
+
+
+  //  }
+
+
+
   },
+      
 
-  onGetUserInfo: function(e) {
-    if (!this.data.logged && e.detail.userInfo) {
-      this.setData({
-        logged: true,
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true,
-      })
-    }
+
+  // 页面下拉刷新，即执行getteaminfo
+  onPullDownRefresh:function()
+  {
+    this.getteaminfo();
   },
-
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
-  },
-
-  // 上传图片
-  doUpload: function () {
-    // 选择图片
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-        wx.showLoading({
-          title: '上传中',
-        })
-
-        const filePath = res.tempFilePaths[0]
-        
-        // 上传图片
-        const cloudPath = `my-image${filePath.match(/\.[^.]+?$/)[0]}`
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-
-            app.globalData.fileID = res.fileID
-            app.globalData.cloudPath = cloudPath
-            app.globalData.imagePath = filePath
-            
-            wx.navigateTo({
-              url: '../storageConsole/storageConsole'
-            })
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
-        })
-      },
-      fail: e => {
-        console.error(e)
-      }
-    })
-  },
-
 })
+
+
+
