@@ -25,7 +25,7 @@
             <!-- 下：信息  当前人数/人数上限 -->
             <view class="single_down">
                 <rich-text class="info" >{{item.information}}</rich-text>
-                <view class="peoplenumber">{{item.max}}</view>
+                <view class="peoplenumber">{{item.current_member}}/{{item.max}}</view>
             </view>
         </navigator>
 

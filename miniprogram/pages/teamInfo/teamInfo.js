@@ -91,7 +91,7 @@ Page({
     const members = db.collection('Member');
       members.where({
         team_id:options
-      }).get({
+      }).get()=>
         success:function(res){
           // console.log(res.data);
           var member_id_list=res.data;
