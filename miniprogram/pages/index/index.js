@@ -20,16 +20,17 @@ Page({
   // 获取队伍信息的函数
   getteaminfo()
   {
+    console.log("ddddddddddd");
     const db = wx.cloud.database()
     const teams = db.collection('Team');
-    var team_ids=[];
+    // var team_ids=[];
     teams.get().then(res=>{
-      // console.log(res.data[0].deadline);
+      console.log(res);
       // console.log(res.data[0].deadline.toLocaleDateString());
       for(var a=0;a<res.data.length;a++)
       {
         res.data[a].deadline=res.data[a].deadline.toLocaleDateString();
-        team_ids.push(res.data[a]._id);
+        // team_ids.push(res.data[a]._id);
       }
 
       // this.setData({team_ids:team_ids});
