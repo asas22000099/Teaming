@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "Tabs":"../../components/Tabs/Tabs"
+    "infoTabs":"../../components/infoTabs/infoTabs"
   },
   "navigationBarTitleText": "队伍"
 }

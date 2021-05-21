@@ -36,11 +36,12 @@
 		"minifyWXSS": true,
 		"useApiHostProcess": true
 	},
-	"appid": "wx3282d8a85ab92cf7",
+	"appid": "wx96f3749ebcd048c2",
 	"projectname": "teaming",
 	"libVersion": "2.14.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"list": []

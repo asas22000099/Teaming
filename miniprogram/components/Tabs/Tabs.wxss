@@ -1,6 +1,7 @@
 /* components/Tabs.wxss */
 /* components/tabs/Tabs.wxss */
-.tabs .tabs_title {
+
+/* .tabs .tabs_title {
   display: flex;
 }
 .tabs .tabs_title .title_item {
@@ -13,4 +14,31 @@
 .tabs .tabs_title .active {
   color: var(--themeColor);
   border-bottom: 5rpx solid currentColor;
+} */
+
+.tabs .tabs_single {
+  display: flex;
+}
+.tabs .tabs_single .single_item {
+  /* font-size: 25rpx; */
+  border-radius: 40rpx;
+  margin: 10rpx;
+  border: #d89cf6 solid 1rpx;
+  min-width:20% ;
+  max-width: 20%;
+  padding: 15rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d89cf6;
+  flex: 1;
+}
+.tabs .tabs_single .active{
+  /* font-size: 40rpx; */
+  /* color:rgb(218, 94, 23); */
+  background-color:#f0e3ff;
+  color:#d89cf6;
+  border: #d89cf6 solid  1rpx;
+  font-weight: bold;
+  /* background-color: lavender; */
 }
