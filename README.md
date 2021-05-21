@@ -13,6 +13,6 @@
 
 ## 切换APPID
 
-将APPID转换为：wx96f3749ebcd048c2
-检查环境ID为：teaming-1g9mzhby405cea51
+- 将APPID转换为：wx96f3749ebcd048c2
+- 检查环境ID为：teaming-1g9mzhby405cea51
 
