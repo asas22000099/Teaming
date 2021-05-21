@@ -10,3 +10,9 @@
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
 
+
+## 切换APPID
+
+将APPID转换为：wx96f3749ebcd048c2
+检查环境ID为：teaming-1g9mzhby405cea51
+
